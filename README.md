@@ -1,8 +1,8 @@
 # unity-gamedev-team
 
-A team of Claude Code agents, skills and commands for building **Unity mobile games** (Android + iOS), from concept to live ops.
+A team of Claude Code agents, skills and commands for building **Unity games**, from concept to live ops. Mobile (Android + iOS) by default, or PC/Steam: put `Platform: pc-steam` in the game project's `CLAUDE.md` (outside the team block).
 
-**11 agents · 25 skills · 3 commands**, organized around a stage pipeline: one stage at a time, cheap checks often, one gate per stage.
+**11 agents · 28 skills · 4 commands**, organized around a stage pipeline: one stage at a time, cheap checks often, one gate per stage.
 
 ## Install into a game project
 
@@ -32,6 +32,7 @@ Optional: if the Unity plugin skills (`unity:*`, `unity-perf:*`) are installed, 
 | `/build-game [focus]` | The producer runs the current stage: plans, delegates, verifies, and runs the gate when ready |
 | `/review-game [lens]` | One combined review of the whole game at its current stage |
 | `/stage [n] [reason]` | Show the stage and its exit criteria, or set it by hand |
+| `/add-cheats [system]` | Add dev-only debug cheats everywhere (or to one system) with an on-device cheat menu |
 
 ## Stages
 
@@ -57,11 +58,15 @@ Optional: if the Unity plugin skills (`unity:*`, `unity-perf:*`) are installed, 
 
 | Area | Skills |
 |---|---|
-| Pipeline | `stage-ladder`, `game-review`, `release-gate` |
-| Unity engineering | `unity-project-audit`, `unity-safe-reorganization`, `unity-dependency-audit`, `unity-debugging`, `unity-profiling`, `testable-by-design` |
+| Pipeline | `stage-ladder`, `game-review`, `release-gate`, `dreamer-bridge` |
+| Unity engineering | `unity-project-audit`, `unity-safe-reorganization`, `unity-dependency-audit`, `asmdef-layering-check`, `unity-debugging`, `unity-profiling`, `testable-by-design`, `debug-cheats` |
 | Design and feel | `core-loop-review`, `ftue-review`, `difficulty-curve`, `economy-balance`, `ui-ux-audit`, `non-slop`, `tuning-workbench` |
 | Quality | `regression-check`, `playtest-triage`, `retrospective`, `quality-gauntlet` |
 | Mobile | `store-readiness`, `mobile-device-check`, `ads-mediation-review`, `store-art-aso`, `short-form-video` |
+
+## Using it with Dreamer
+
+If the design lives in the Dreamer app, run **Handoff** in Dreamer with the game repo as the handoff folder. That writes `docs/design/` and a Dreamer block into `CLAUDE.md`. The team then builds from those docs, asks design questions in `docs/design/QUESTIONS.md` (they show up in Dreamer), and can tick the build-plan card and add playtest cards if the project's `CLAUDE.md` names the Dreamer folder. See `claude/skills/dreamer-bridge/SKILL.md`.
 
 ## Notes
 

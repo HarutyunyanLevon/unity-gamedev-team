@@ -3,6 +3,8 @@ name: unity-profiling
 description: Diagnose Unity CPU, GPU, memory, garbage collection, rendering, physics, UI, loading and frame-pacing problems on mobile with Profiler, Frame Debugger and Memory Profiler, and confirm fixes with before/after measurements. Use for one specific performance problem; use the game-performance-engineer agent for a whole campaign.
 ---
 
+> **Platform:** read the `Platform:` line in the project's `CLAUDE.md`. On `pc-steam`, use the PC row of the Platform table wherever this file says phone, touch, device or store.
+
 # Unity Performance Profiling
 
 ## 1. Measure on the right target

@@ -26,6 +26,8 @@ Games are hard to test when rules live inside MonoBehaviours, depend on real tim
 | Integration | PlayMode tests loading a scene | seconds–minutes | Wiring, prefabs, scene flow |
 | Soak | Bot playing a dev build on device for 30–60 min | minutes | Leaks, heat, rare crashes |
 
+**Empty assemblies don't exist.** Unity compiles an asmdef only if its folder has at least one `.cs` file. An empty test assembly never shows in the Test Runner, and an empty runtime assembly can't be referenced by a test. Give every new test assembly one real test from day one (for example a check that its package's asmdef references follow the layer rule) instead of an `Assert.Pass()` placeholder.
+
 ## Bot policies
 
 Write at least two: **random** (finds crashes and softlocks) and **greedy** (approximates a decent player, for balance). For difficulty, compare win rate by level across policies; a level that greedy can't beat is a spike.
@@ -36,4 +38,4 @@ Don't rewrite. When touching a system, extract its rules into a plain class, cov
 
 ## Output
 
-Tests in `Assets/Tests/EditMode/` and `Assets/Tests/PlayMode/` with their own asmdefs, plus a short note on how to run them (Test Runner window, or `-runTests -testPlatform EditMode` in batch mode, or `unity:unity-cli` if installed).
+Tests in `Assets/Tests/EditMode/` and `Assets/Tests/PlayMode/` with their own asmdefs (or each package's `Tests/Editor/` in a package-per-module project), plus a short note on how to run them (Test Runner window, or `-runTests -testPlatform EditMode` in batch mode, or `unity:unity-cli` if installed).

@@ -3,6 +3,8 @@ name: ads-mediation-review
 description: Review or plan a mobile game's ad setup - placements, formats, frequency caps, mediation and waterfall/bidding, consent (GDPR/UMP, US state privacy, ATT), test vs production configuration and player experience. Use when adding ads, changing placements, or before release.
 ---
 
+> **Platform:** mobile only. If the project's `CLAUDE.md` says `Platform: pc-steam`, say this skill doesn't apply and stop, unless the owner asked for it.
+
 # Ads and Mediation Review
 
 ## 1. Placements and player experience

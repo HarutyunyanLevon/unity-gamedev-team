@@ -3,6 +3,8 @@ name: store-readiness
 description: Preflight a Unity mobile build and its store listing for Google Play and the Apple App Store - technical requirements, permissions, privacy disclosures, age rating, listing assets and review-guideline risks - before submission.
 ---
 
+> **Platform:** read the `Platform:` line in the project's `CLAUDE.md`. On `pc-steam`, use the PC row of the Platform table wherever this file says phone, touch, device or store.
+
 # Store Readiness Check
 
 Store requirements change often (target API levels, SDK minimums, privacy rules). **Check the current official documentation for each requirement before marking it**, and cite the page and date checked. Never rely on memory for version numbers.

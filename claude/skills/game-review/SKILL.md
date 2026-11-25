@@ -3,6 +3,8 @@ name: game-review
 description: Use at a stage gate (especially the vertical slice gate) or whenever the owner asks for a review of the whole game. Produces one combined, prioritized review across fun, feel, look, UX, tech health and business, scaled to the current stage.
 ---
 
+> **Platform:** read the `Platform:` line in the project's `CLAUDE.md`. On `pc-steam`, use the PC row of the Platform table wherever this file says phone, touch, device or store.
+
 # Game Review
 
 One combined review of the whole game, at its current stage. It replaces many scattered opinions with one ranked list the owner can act on.
@@ -28,7 +30,7 @@ If you cannot run the game, say so at the top of the review and mark findings th
 |---|---|---|
 | Fun / core loop | Is the core verb satisfying in the first 30 s? Is there a reason to do it again? | `core-loop-review` |
 | Feel | Does every input get instant, readable feedback? Weight, anticipation, impact? | `game-feel-designer` |
-| Look | One coherent style? Readable at phone size? Anything that reads as generic or AI-made? | `game-art-director`, `non-slop` |
+| Look | One coherent style? Readable at the platform's target screen size? Anything that reads as generic or AI-made? | `game-art-director`, `non-slop` |
 | UX | Can a new player get from launch to the first fun moment without help? Thumb reach, tap targets ≥ 44 pt, safe areas | `ui-ux-audit`, `ftue-review` |
 | Progression | Difficulty curve, economy sinks/sources, session pacing | `difficulty-curve`, `economy-balance` |
 | Tech health | Frame time, GC, load time, crashes, save robustness, project structure | `unity-profiling`, `unity-project-audit` |

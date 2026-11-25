@@ -2,7 +2,7 @@
 # Unity Game Dev Team
 
 This project uses a team of game-development agents, skills and commands in `.claude/`.
-Target: **Unity, mobile first** (Android + iOS). Copy this block into the game project's own `CLAUDE.md`.
+Target: **Unity**, mobile (Android + iOS) by default, or PC/Steam: see **Platform** below. Copy this block into the game project's own `CLAUDE.md`.
 
 ## How the team works
 
@@ -20,6 +20,7 @@ docs/gamedev/
   CONCEPT.md        one-page concept: fantasy, core verb, core loop, audience, monetization model
   DECISIONS.md      dated log of decisions and the reason for each
   TUNING.md         every tunable number, where it lives, current value, why
+  CHEATS.md         every debug cheat, what it does, which game API it uses
   reviews/          game-review and release-gate reports (YYYY-MM-DD-<stage>.md)
   reports/          focused skill reports (YYYY-MM-DD-<skill>.md)
   playtests/        raw playtest notes and triage output
@@ -32,14 +33,32 @@ Create missing files on first use. Never delete reports; supersede them with new
 - Never move, rename or delete assets outside the Unity Editor or without moving the `.meta` file with them. Use the `unity-safe-reorganization` skill.
 - Gameplay numbers live in ScriptableObjects or remote config, never hard-coded in MonoBehaviours.
 - Keep third-party SDKs (ads, IAP, analytics, remote config) behind game-owned interfaces so they can be swapped and mocked in tests.
-- Mobile budgets (defaults, override in `TUNING.md`): 60 fps target on mid-tier devices and a stable 30 on low-end; 0 B GC allocations per frame in gameplay; first interactive frame in under 5 s on mid-tier; install size under 150 MB.
+- Every system ships with debug cheats (`debug-cheats` skill), compiled out of release builds. A system without cheats isn't done.
+- Budgets: see the Platform table (override in `TUNING.md`). On every platform: 0 B GC allocations per frame in gameplay.
 - If Unity plugin skills are installed (`unity:*`, `unity-perf:*`), use them for engine-level work and keep these skills for the process around it.
+- Keep `com.unity.pipeline` in the project so agents can drive the open Editor (`unity:unity-cli`: tests, recompile). Use batch mode only when the Editor is closed.
+
+## Platform
+
+The game project's `CLAUDE.md` names its platform on a line **outside** this block: `Platform: mobile` or `Platform: pc-steam`. If the line is missing, the platform is `mobile`. Every agent and skill reads it first. Wherever a team file talks about phones, touch, devices or app stores, apply the matching row here instead.
+
+| | `mobile` (default) | `pc-steam` |
+|---|---|---|
+| Input | Touch first, safe areas, thumb reach | Mouse and keyboard first, gamepad optional, rebindable keys; no safe-area logic |
+| Reference hardware | Low-end Android (2–3 GB), mid-tier Android, an older supported iPhone | Current Steam Hardware Survey median (check the survey) plus one minimum-spec PC |
+| Budgets | 60 fps on mid-tier, stable 30 on low-end; first interactive frame < 5 s; install < 150 MB | 60 fps minimum on the median PC unless the project sets more; first interactive frame < 10 s; no install cap unless set |
+| Profiling | Development build on the device over USB | Development player build on the PC, not the Editor |
+| UI and text | Text ≥ 12 pt on the smallest phone; tap targets ≥ 44 pt | Readable at 1080p from 60 cm and scales to 1440p/4K; UI scale setting; hover and focus states |
+| Builds | AAB + IPA via `mobile-release-engineer` | Windows x64 IL2CPP player and Steam depots (SteamPipe). `mobile-release-engineer` keeps its pipeline rules (reproducible builds, versioning, symbols, secrets) and uses Steamworks in place of the phone stores |
+| Store skills | `store-readiness`, `store-art-aso`, `mobile-device-check`, `ads-mediation-review` | `store-readiness` and `store-art-aso` apply to the Steam page (capsules, screenshots, trailer, tags; check current Steamworks docs). Skip `mobile-device-check` and `ads-mediation-review` unless the owner asks |
+| Release checks | `release-gate` as written | `release-gate`: swap the Android/iOS build-identity items for Windows build and Steam depot items; drop ATT/UMP unless the game has ads |
 
 ## Who to call
 
 | Problem | Call |
 |---|---|
 | Build or continue the game | `/build-game` → `game-producer` |
+| Design comes from the Dreamer app | `dreamer-bridge` skill |
 | Whole-game review | `/review-game` → `game-review` skill |
 | Feature code, scenes, prefabs | `unity-developer` |
 | Mechanics, loops, economy, difficulty | `game-systems-designer` |
@@ -48,7 +67,10 @@ Create missing files on first use. Never delete reports; supersede them with new
 | Visual direction, "looks AI-made" | `game-art-director` |
 | Frame drops, heat, memory, load time | `game-performance-engineer` |
 | Bugs, playtests, regressions | `game-qa-analyst` |
+| Reach any game state fast (cheat menu) | `/add-cheats` → `debug-cheats` skill |
 | IAP, ads, pricing | `game-monetization-manager` |
 | Remote config, flags, analytics, A/B | `game-config-analytics-engineer` |
 | Store builds and submission | `mobile-release-engineer` |
+| Package or asmdef added or changed | `asmdef-layering-check` skill |
+| Before any commit; settings you didn't touch | `settings-drift-check` skill |
 <!-- unity-gamedev-team:end -->

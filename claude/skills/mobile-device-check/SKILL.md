@@ -3,6 +3,8 @@ name: mobile-device-check
 description: Check a Unity mobile game across real device conditions - low-end Android performance, heat and battery, memory pressure, screen sizes, notches and safe areas, aspect ratios, OS interruptions and build size. Use from the vertical slice onward and before releases.
 ---
 
+> **Platform:** mobile only. If the project's `CLAUDE.md` says `Platform: pc-steam`, say this skill doesn't apply and stop, unless the owner asked for it.
+
 # Mobile Device and Performance Check
 
 ## Device tiers (define in TUNING.md)

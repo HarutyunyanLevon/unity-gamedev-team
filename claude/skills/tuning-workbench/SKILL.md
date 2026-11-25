@@ -3,6 +3,8 @@ name: tuning-workbench
 description: Build a game-specific, in-game or in-editor tuning panel that exposes only the meaningful numbers (feel, camera, difficulty, economy, effects) so the owner can tune live on device and save the results. Use when tuning by editing code or assets is too slow.
 ---
 
+> **Platform:** read the `Platform:` line in the project's `CLAUDE.md`. On `pc-steam`, use the PC row of the Platform table wherever this file says phone, touch, device or store.
+
 # Game Tuning Workbench
 
 ## What to expose
@@ -20,7 +22,7 @@ Pick them from `TUNING.md`. Don't expose everything: a panel with 200 sliders is
 
 1. **Single source of truth**: tunables live in ScriptableObject assets (one per group). Gameplay reads from them every time (or subscribes to a change event), so changes apply live.
 2. **Runtime panel** (works on device, in development builds only):
-   - Opened by a hidden gesture (for example a 3-finger tap or a long press in a corner), compiled out of release builds with `#if DEVELOPMENT_BUILD || UNITY_EDITOR`.
+   - Opened from the cheat menu (`[Cheat("Tuning/Open panel")]`, see `debug-cheats`) or, if the game has no cheat menu, a hidden gesture. Compiled out of release builds with `#if DEVELOPMENT_BUILD || UNITY_EDITOR`.
    - Slider + number field per value, with the min/max range from metadata; a reset-to-default button per value and group.
    - Presets: save and load named presets as JSON in `Application.persistentDataPath`; export the current values as text so they can be copied back into the assets or remote config.
 3. **Editor side**: an editor window or simple inspectors to apply an exported preset back onto the ScriptableObjects.

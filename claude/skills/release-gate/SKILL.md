@@ -3,6 +3,8 @@ name: release-gate
 description: Use when a candidate build is about to go to players (soft launch, store release, or a live update), or the owner asks for a release check, readiness review or sign-off. Produces a documented GO / NO-GO with evidence.
 ---
 
+> **Platform:** read the `Platform:` line in the project's `CLAUDE.md`. On `pc-steam`, use the PC row of the Platform table wherever this file says phone, touch, device or store.
+
 # Release Gate
 
 Turns "looks ready" into a ship decision with evidence. It runs once per candidate build, after the cheap checks are done.
@@ -20,7 +22,7 @@ Each item is **PASS**, **FAIL**, or **WAIVED** (owner waiver, logged in `DECISIO
 ### Build identity
 - [ ] Version name and code bumped, and match release notes
 - [ ] Built from a tagged commit, with no uncommitted changes
-- [ ] Release configuration: no development build, no script debugging, no debug menus or cheats reachable
+- [ ] Release configuration: no development build, no script debugging, no debug menus or cheats reachable (run the release check in `debug-cheats`)
 - [ ] Android: AAB, target API meets current Google Play requirement, 64-bit, signed with the upload key
 - [ ] iOS: archive signed with the distribution profile, build number unique
 

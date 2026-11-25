@@ -3,6 +3,8 @@ name: ui-ux-audit
 description: Use when reviewing an existing mobile game's HUD, menus, navigation, readability, touch input, accessibility, or store and reward screens. Produces a ranked list of UI/UX problems with evidence and fixes.
 ---
 
+> **Platform:** read the `Platform:` line in the project's `CLAUDE.md`. On `pc-steam`, use the PC row of the Platform table wherever this file says phone, touch, device or store.
+
 # Game UI/UX Audit
 
 ## 1. Inventory

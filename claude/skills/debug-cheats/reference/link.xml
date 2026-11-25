@@ -1,0 +1,7 @@
+<!-- Cheats are found by reflection, so IL2CPP stripping would remove them. Safe in release: entries are ignored when the code is absent. -->
+<linker>
+  <assembly fullname="Game.Cheats" preserve="all" ignoreIfMissing="1" />
+  <assembly fullname="Assembly-CSharp" ignoreIfMissing="1">
+    <type fullname="Game.Cheats.*" preserve="all" />
+  </assembly>
+</linker>

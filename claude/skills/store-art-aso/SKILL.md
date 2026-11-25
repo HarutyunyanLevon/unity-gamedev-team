@@ -3,6 +3,8 @@ name: store-art-aso
 description: Create store listing assets (icon, screenshots, feature graphic, preview video plan) from the game's own art and real gameplay, and write store listing copy and keywords (ASO) for Google Play and the App Store.
 ---
 
+> **Platform:** read the `Platform:` line in the project's `CLAUDE.md`. On `pc-steam`, use the PC row of the Platform table wherever this file says phone, touch, device or store.
+
 # Store Art and ASO
 
 Store art must show the real game. Misleading screenshots get rejected and earn bad reviews.
